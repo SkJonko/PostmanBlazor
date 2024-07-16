@@ -1,0 +1,65 @@
+﻿@page "/postman"
+@inherits PostmanBase
+
+
+<MasterPage ViewModel="this">
+    <MudGrid>
+
+        <MudItem Class="d-flex align-center justify-center mud-width-full py-8" xs="2">
+            <MudSelect T="string" @bind-value="SelectedMethod" Dense="true" Variant="Variant.Outlined" AnchorOrigin="Origin.BottomCenter">
+                @foreach (var methods in HttpMethodsPostman)
+                {
+                    <MudSelectItem Value="@methods.Type">
+                        <font color="@methods.Color">@methods.Type</font>
+                    </MudSelectItem>
+                }
+            </MudSelect>
+        </MudItem>
+
+        <MudItem Class="d-flex align-center justify-center mud-width-full py-8" xs="9">
+            <MudTextField @bind-Value="RequestUrl" Label="URL" Variant="Variant.Outlined"></MudTextField>
+        </MudItem>
+        <MudItem Class="d-flex align-center justify-center mud-width-full py-8" xs="1">
+            <MudButton Size="Size.Large" Color="Color.Primary" Variant="Variant.Filled" OnClick="@((e) => SendRequest())">Send</MudButton>
+        </MudItem>
+    </MudGrid>
+
+    <MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+        <MudTabPanel Text="Body">
+            <div class="mud-layout-sample-item">
+                <MudTextField T="string" Label="Request JSON" @bind-Value="RequestData" Lines="10" FullWidth="true" />
+            </div>
+        </MudTabPanel>
+        <MudTabPanel Text="Headers">
+            <MudTextField T="string" Label="Key" @bind-Value="HeaderKey" />
+            <MudTextField T="string" Label="Value" @bind-Value="HeaderValue" />
+            <br />
+            <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="AddHeader">Add Header</MudButton>
+            <br />
+            <br />
+            <MudTable Items="Headers" Dense="true">
+                <HeaderContent>
+                    <MudTh>Key</MudTh>
+                    <MudTh>Value</MudTh>
+                    <MudTh></MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd>@context.Key</MudTd>
+                    <MudTd>@context.Value</MudTd>
+                    <MudTd>
+                        <MudIconButton Size="Size.Small" Icon="@Icons.Material.Filled.Delete" OnClick="@((e)=> RemoveHeader(@context))" Class="hover-icon" />
+                    </MudTd>
+                </RowTemplate>
+            </MudTable>
+        </MudTabPanel>
+    </MudTabs>
+
+    <MudDivider DividerType="DividerType.Middle" Class="my-6" />
+
+    <ResponseHttp ResponseJson="@ResponseJson" ResponseStatus="@ResponseStatus" TimeElapsed="TimeElapsed"/>
+
+</MasterPage>
+
+@code {
+
+}

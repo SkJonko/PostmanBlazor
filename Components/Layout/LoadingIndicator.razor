@@ -1,0 +1,11 @@
+﻿<MudOverlay @bind-Visible="IsLoading" DarkBackground="true" AutoClose="false">
+    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+</MudOverlay>
+
+@code {
+    [Parameter] 
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter] 
+    public bool IsLoading { get; set; }
+}

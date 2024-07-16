@@ -1,0 +1,8 @@
+﻿.hover-icon {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mud-table-row:hover .hover-icon {
+    opacity: 1;
+}

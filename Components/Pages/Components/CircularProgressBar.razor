@@ -1,0 +1,28 @@
+﻿<MudStack AlignItems="AlignItems.Center">
+    <MudProgressCircular Size="@Size" Color="@Utils.GetPercentageColor(Percentage)" Value="@Utils.GetPercentage(Percentage)" />
+    <MudText Align="Align.Center">@Utils.GetPercentageRepresentation(Percentage)</MudText>
+    <MudText Align="Align.Center">@Text</MudText>
+</MudStack>
+
+@code
+{
+    /// <summary>
+    /// The Percentage.
+    /// </summary>
+    [Parameter]
+    [EditorRequired]
+    public double Percentage { get; set; }
+
+    /// <summary>
+    /// The Text that you want to show in the Center of Circular Progess Bar
+    /// </summary>
+    [Parameter]
+    [EditorRequired]
+    public string Text { get; set; }
+
+    /// <summary>
+    /// The size of Progess Bar
+    /// </summary>
+    [Parameter]
+    public Size Size { get; set; }
+}

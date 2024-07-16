@@ -1,0 +1,19 @@
+﻿<LoadingIndicator IsLoading="@ViewModel.IsLoading"></LoadingIndicator>
+
+
+@ChildContent
+
+
+@code {
+    /// <summary>
+    /// Takes the ViewModelBase of the parent component
+    /// </summary>
+    [Parameter]
+    public ViewModelBase ViewModel { get; set; }
+
+    /// <summary>
+    /// The page content to be rendered
+    /// </summary>
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

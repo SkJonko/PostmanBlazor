@@ -1,0 +1,42 @@
+﻿<MudCard>
+    <MudCardContent>
+        <MudStack Row="true">
+            <h3><b>Response</b></h3>
+            <MudSpacer />
+            @if (!string.IsNullOrWhiteSpace(ResponseStatus))
+            {
+                <div>Status: @ResponseStatus</div>
+            }
+            @if (TimeElapsed.TotalMilliseconds > 0)
+            {
+                <div>@TimeElapsed.TotalMilliseconds ms</div>
+            }
+        </MudStack>
+        <pre>@ResponseJson</pre>
+    </MudCardContent>
+</MudCard>
+
+@code {
+
+    /// <summary>
+    /// The status that response from the call.
+    /// </summary>
+    [Parameter]
+    [EditorRequired]
+    public string ResponseStatus { get; set; }
+
+    /// <summary>
+    /// The Response JSOPN of HTTP Call.
+    /// </summary>
+    [Parameter]
+    [EditorRequired]
+    public string ResponseJson { get; set; }
+
+    /// <summary>
+    /// How many Time elapsed to answer the call.
+    /// </summary>
+    [Parameter]
+    [EditorRequired]
+    public TimeSpan TimeElapsed { get; set; }
+
+}
